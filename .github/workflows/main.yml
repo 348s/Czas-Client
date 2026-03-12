@@ -1,3 +1,26 @@
-git add .
-git commit -m "Initial commit"
-git push origin main
+name: Build Czas Client
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    - name: Build
+      run: ./gradlew build
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: CzasClient
+        path: build/libs/CzasClient.jar
