@@ -3,8 +3,6 @@ name: Build Czas Client
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
@@ -17,15 +15,8 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - name: Cache Gradle packages
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
     - name: Build with Gradle
-      run: ./gradlew shadowJar --no-daemon
+      run: ./gradlew shadowJar --no-daemon --stacktrace
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
