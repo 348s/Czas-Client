@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="MIT"
+issueTrackerURL="https://github.com/348-s/czas-client/issues"
+
+[[mods]]
+modId="czasclient"
+version="${file.jarVersion}"
+displayName="Czas Client"
+logoFile="logo.png"
+credits="348 s"
+authors="348 s"
+description='''
+A comprehensive Minecraft client with configurable mods and enhanced gameplay features.
+Compatible with Minecraft versions 1.18.2 to 1.21.4.
+'''
+
+[[dependencies.czasclient]]
+modId="forge"
+mandatory=true
+versionRange="[40,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.czasclient]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.18.2,1.21.4]"
+ordering="NONE"
+side="BOTH"
