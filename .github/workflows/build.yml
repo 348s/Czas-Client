@@ -15,10 +15,13 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+    - name: Download Gradle
+      run: |
+        curl -L https://services.gradle.org/distributions/gradle-8.1.1-bin.zip -o gradle.zip
+        unzip gradle.zip
+        mv gradle-8.1.1 gradle
     - name: Build with Gradle
-      run: ./gradlew shadowJar --no-daemon --stacktrace
+      run: ./gradle/bin/gradle shadowJar --no-daemon --stacktrace
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
