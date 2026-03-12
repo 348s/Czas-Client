@@ -15,13 +15,13 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - name: Download and setup Gradle
+    - name: Download Gradle
       run: |
-        wget https://services.gradle.org/distributions/gradle-8.1.1-bin.zip
-        unzip gradle-8.1.1-bin.zip
-        export GRADLE_HOME=$PWD/gradle-8.1.1
-        export PATH=$PATH:$GRADLE_HOME/bin
-        ./gradlew shadowJar --no-daemon --stacktrace
+        curl -L https://services.gradle.org/distributions/gradle-8.1.1-bin.zip -o gradle.zip
+        unzip gradle.zip
+        mv gradle-8.1.1 gradle
+    - name: Build with Gradle
+      run: ./gradle/bin/gradle shadowJar --no-daemon --stacktrace
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
